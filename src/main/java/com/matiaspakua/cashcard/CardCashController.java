@@ -10,6 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/cashcards")
 public class CardCashController {
 
+	@GetMapping("/version")
+	public String version() {
+		return "0.1";
+	}
+
 	@GetMapping("/{requestedId}")
 	public ResponseEntity<CashCard> findById(@PathVariable Long requestedId) {
 
