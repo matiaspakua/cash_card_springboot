@@ -1,6 +1,6 @@
 package com.matiaspakua.Selenium;
 
-import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -12,7 +12,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 @TestInstance(Lifecycle.PER_CLASS)
-public class KeyboardAndMouseInput {
+public class AutocompleteForm {
 
 	private WebDriver driver;
 
@@ -32,26 +32,31 @@ public class KeyboardAndMouseInput {
 
 	}
 
-	@AfterEach
+	@AfterAll
 	public void tearDown() {
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		driver.quit();
 	}
 
 	@Test
-	public void given_EnterFormyProject_when_clickAndInput_then_success() {
-		driver.get("https://formy-project.herokuapp.com/keypress");
+	public void given_aGenericForm_when_inputData_then_autocompleteSuccess() {
+		driver.get("https://formy-project.herokuapp.com/autocomplete");
 
-		WebElement name = driver.findElement(By.id("name"));
-		name.click();
-		name.sendKeys("Matias Miguez");
-
-		WebElement button = driver.findElement(By.id("button"));
-		button.click();
-
+		WebElement autocomplete = driver.findElement(By.id("autocomplete"));
+		
+		autocomplete.sendKeys("1555 Park Blvr, Palo Alto, CA");
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {		
+			e.printStackTrace();
+		}
+		
+		WebElement autocompleteResult = driver.findElement(By.className("pac-item"));
+		autocompleteResult.click();
 	}
 }
