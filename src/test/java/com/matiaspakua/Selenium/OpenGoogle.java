@@ -33,16 +33,21 @@ public class OpenGoogle {
 	}
 
 	@AfterAll
-	public void tearDown() {
-		// Close the browser
+	public void tearDown() {		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		driver.quit();
 	}
-	
+
 	@Test
 	public void testLogin() {
 
 		// And now use this to visit Google
-		driver.get("https://www.google.com/"); 
+		driver.get("https://www.google.com/");
 
 		// Find the text input element by its name WebElement
 		WebElement element = driver.findElement(By.name("q"));
@@ -52,5 +57,12 @@ public class OpenGoogle {
 
 		// Now submit the form
 		element.submit();
+		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

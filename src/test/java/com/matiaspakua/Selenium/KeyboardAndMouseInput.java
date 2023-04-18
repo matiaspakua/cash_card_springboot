@@ -1,6 +1,7 @@
 package com.matiaspakua.Selenium;
 
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -31,9 +32,15 @@ public class KeyboardAndMouseInput {
 		driver = new ChromeDriver(options);
 
 	}
-	
-	@AfterAll
+
+	@AfterEach
 	public void tearDown() {
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		driver.quit();
 	}
 
@@ -43,10 +50,10 @@ public class KeyboardAndMouseInput {
 
 		WebElement name = driver.findElement(By.id("name"));
 		name.click();
-		name.sendKeys("Meaghan Lewis");
+		name.sendKeys("Matias Miguez");
 
 		WebElement button = driver.findElement(By.id("button"));
-		button.click();	
+		button.click();
 
 	}
 }
