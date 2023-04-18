@@ -30,6 +30,7 @@ public class OpenGoogle {
 		// Create new instance of ChromeDriver
 		driver = new ChromeDriver(options);
 
+		driver.manage().window().maximize();
 	}
 
 	@AfterAll
@@ -37,7 +38,6 @@ public class OpenGoogle {
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		driver.quit();

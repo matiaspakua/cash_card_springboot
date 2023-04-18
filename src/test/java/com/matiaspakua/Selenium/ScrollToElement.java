@@ -1,6 +1,6 @@
 package com.matiaspakua.Selenium;
 
-import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -10,10 +10,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 
 @TestInstance(Lifecycle.PER_CLASS)
-public class AutocompleteForm {
-
+public class ScrollToElement {
 	private WebDriver driver;
 
 	@BeforeAll
@@ -28,13 +28,12 @@ public class AutocompleteForm {
 		System.setProperty("webdriver.chrome.driver", "C:\\WedDrivers\\chromedriver.exe");
 
 		// Create new instance of ChromeDriver
-		driver = new ChromeDriver(options);
-		
-		driver.manage().window().maximize();
+		driver = new ChromeDriver(options);			
 
+		driver.manage().window().maximize();
 	}
 
-	@AfterAll
+	@AfterEach
 	public void tearDown() {
 		try {
 			Thread.sleep(1000);
@@ -45,19 +44,20 @@ public class AutocompleteForm {
 	}
 
 	@Test
-	public void given_aGenericForm_when_inputData_then_autocompleteSuccess() {
-		driver.get("https://formy-project.herokuapp.com/autocomplete");
+	public void given_pageWithLotsOfText_when_moveToElement_then_inputDataSuccess() {
 
-		WebElement autocomplete = driver.findElement(By.id("autocomplete"));
+		driver.get("https://formy-project.herokuapp.com/scroll");
 		
-		autocomplete.sendKeys("1555 Park Blvr, Palo Alto, CA");
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {		
-			e.printStackTrace();
-		}
+		WebElement name = driver.findElement(By.id("name"));
 		
-		WebElement autocompleteResult = driver.findElement(By.className("pac-item"));
-		autocompleteResult.click();
+		Actions actions = new Actions(driver);
+		actions.moveToElement(name);
+		
+		name.sendKeys("Matias Miguez");
+		
+		WebElement date = driver.findElement(By.id("date"));
+		
+		date.sendKeys("17/03/1985");
 	}
+
 }

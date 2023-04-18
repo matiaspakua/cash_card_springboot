@@ -29,6 +29,8 @@ public class KeyboardAndMouseInput {
 
 		// Create new instance of ChromeDriver
 		driver = new ChromeDriver(options);
+		
+		driver.manage().window().maximize();
 
 	}
 
