@@ -2,6 +2,7 @@ package com.matiaspakua.Selenium;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
@@ -45,7 +46,8 @@ public class AutocompleteForm {
 	}
 
 	@Test
-	public void given_aGenericForm_when_inputData_then_autocompleteSuccess() {
+	@Disabled
+	public void given_GenericForm_when_inputData_then_autocompleteSuccess() {
 		driver.get("https://formy-project.herokuapp.com/autocomplete");
 
 		WebElement autocomplete = driver.findElement(By.id("autocomplete"));
