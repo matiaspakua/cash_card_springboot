@@ -2,12 +2,12 @@ version: '3.8'
 services:
   db:
     container_name: pg_container
-    image: postgres
+    image: postgres:15.2
     restart: always
     environment:
-      POSTGRES_USER: matias
+      POSTGRES_USER: admin
       POSTGRES_PASSWORD: password
-      POSTGRES_DB: test_db
+      POSTGRES_DB: cashcard
     volumes:
        - postgres:/data/postgres
     ports:
