@@ -1,5 +1,6 @@
 package com.matiaspakua.cashcard;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -8,7 +9,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/cashcards")
-public class CardCashController {
+public class CashCardController {
+
+	private CashCardRepository cashCardRepository;
+
+	public CashCardController(CashCardRepository cashCardRepository) {
+		this.cashCardRepository = cashCardRepository;
+
+	}
 
 	@GetMapping("/version")
 	public String version() {
@@ -17,7 +25,7 @@ public class CardCashController {
 
 	@GetMapping("/{requestedId}")
 	public ResponseEntity<CashCard> findById(@PathVariable Long requestedId) {
-
+		cashCardRepository.findAll();
 		if (requestedId.equals(99L)) {
 			CashCard cashCard = new CashCard(99L, 123.12);
 			return ResponseEntity.ok(cashCard);

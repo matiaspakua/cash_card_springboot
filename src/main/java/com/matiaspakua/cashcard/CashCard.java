@@ -1,12 +1,6 @@
 package com.matiaspakua.cashcard;
 
-public class CashCard {
+import org.springframework.data.annotation.Id;
 
-	public Long id = 0L;
-	public Double amount = 0.0;
-
-	public CashCard(Long id, Double amount) {
-		this.id = id;
-		this.amount = amount;
-	}
+public record CashCard(@Id Long id, Double amount) {
 }
